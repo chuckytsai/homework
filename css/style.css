@@ -93,7 +93,7 @@ body {
 
 @media(max-width: 599px) {
     #welcome {
-        padding-top: 30px;
+        padding-top: 50px;
     }
 }
 
@@ -102,20 +102,20 @@ body {
 
 #WandaVisionPic {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 @media(max-width: 1199px) {
     #WandaVisionPic {
-        width: 90%;
-        float: right;
+        max-width: 90%;
+        margin-right: 0;
     }
 }
 
 @media(max-width: 599px) {
     #WandaVisionPic {
         width: 77%;
-        float: right;
+        margin-right: 0;
     }
 }
 
