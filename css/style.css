@@ -83,7 +83,7 @@ body {
     height: 300px;
     margin-top: 1%;
     background-color: rgb(148, 104, 104, 0.7);
-    display: inline-block;
+    white-space: nowrap;
 }
 
 
