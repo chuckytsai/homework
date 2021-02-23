@@ -102,8 +102,12 @@ body {
 /* 演員圖片區塊 */
 
 #WandaVisionPic {
-    max-width: 1200px;
-    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 3%;
+    width: 1200px;
 }
 
 @media(max-width: 1199px) {
@@ -112,18 +116,11 @@ body {
     }
 }
 
-@media(max-width: 599px) {
-    #WandaVisionPic {
-        width: 77%;
-    }
-}
-
 
 /* 演員劇照 */
 
 .stills {
     display: inline-block;
-    margin-top: 10px;
 }
 
 @media(max-width: 1199px) {
@@ -134,7 +131,7 @@ body {
 
 @media(max-width: 599px) {
     .stills {
-        width: 60%;
+        width: 90%;
     }
 }
 
@@ -160,4 +157,5 @@ body {
     font-size: 20px;
     margin-top: 0px;
     width: 100%;
+    /* display: none; */
 }
