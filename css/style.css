@@ -83,7 +83,18 @@ body {
     height: 300px;
     margin-top: 1%;
     background-color: rgb(148, 104, 104, 0.7);
-    white-space: nowrap;
+}
+
+@media(max-width: 1199px) {
+    #welcome {
+        line-height: 180px;
+    }
+}
+
+@media(max-width: 599px) {
+    #welcome {
+        line-height: 50px;
+    }
 }
 
 
