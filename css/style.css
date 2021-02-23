@@ -81,18 +81,19 @@ body {
     width: 100%;
     color: white;
     height: 300px;
-    margin-top: 1%;
     background-color: rgb(148, 104, 104, 0.7);
 }
 
 @media(max-width: 1199px) {
     #welcome {
+        padding-top: 50%;
         line-height: 180px;
     }
 }
 
 @media(max-width: 599px) {
     #welcome {
+        padding-top: 50%;
         line-height: 50px;
     }
 }
@@ -108,14 +109,12 @@ body {
 @media(max-width: 1199px) {
     #WandaVisionPic {
         max-width: 90%;
-        margin-right: 0;
     }
 }
 
 @media(max-width: 599px) {
     #WandaVisionPic {
         width: 77%;
-        margin-right: 0;
     }
 }
 
