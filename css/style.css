@@ -4,7 +4,13 @@ nav {
     font-size: 20px;
     font-weight: 900;
     color: lightyellow;
-    background-color: lightblue;
+    background-color: rgb(2, 49, 6, 0.8);
+}
+
+@media(max-width:599px) {
+    nav {
+        height: 25px;
+    }
 }
 
 
@@ -84,6 +90,7 @@ body {
     font-size: 40px;
     text-align: center;
     line-height: 300px;
+    margin-top: 1%;
     width: 100%;
     color: white;
     text-shadow: 0.05em 0.01em rgb(34, 19, 5);
@@ -103,7 +110,6 @@ body {
         padding-top: 10%;
         line-height: 50px;
         height: 100px;
-        margin-top: 1%;
     }
 }
 
