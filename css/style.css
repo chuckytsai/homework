@@ -100,8 +100,9 @@ body {
 
 @media(max-width: 1199px) {
     #welcome {
-        padding-top: 50%;
-        line-height: 180px;
+        padding-top: 15%;
+        line-height: 100px;
+        height: 200px;
     }
 }
 
