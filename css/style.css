@@ -64,19 +64,19 @@ ul {
         margin-right: -20%;
         position: absolute;
         top: 7%;
-        right: 70px;
+        right: 20%;
     }
 }
 
 li {
-    width: 70px;
     float: left;
+    list-style: none;
 }
 
 @media(max-width: 599px) {
     li {
         font-size: 15px;
-        list-style: none;
+        float: none;
         margin-bottom: 2%;
         text-align: left;
         background-color: rgb(146, 131, 131);
