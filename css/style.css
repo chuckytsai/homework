@@ -54,33 +54,31 @@ nav {
 }
 
 ul {
-    display: flex;
-    margin-top: -0.5%;
+    margin-top: -0.01%;
 }
 
 @media(max-width: 599px) {
     ul {
+        float: left;
         display: none;
-        margin-top: 10%;
-        z-index: 999;
+        margin-right: -20%;
         position: absolute;
-        opacity: 0.8;
-        margin-left: -42%;
+        top: 7%;
+        right: 70px;
     }
 }
 
 li {
-    width: 100px;
+    width: 70px;
     float: left;
 }
 
 @media(max-width: 599px) {
     li {
         font-size: 15px;
-        float: none;
         list-style: none;
         margin-bottom: 2%;
-        text-align: center;
+        text-align: left;
         background-color: rgb(146, 131, 131);
     }
 }
