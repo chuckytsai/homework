@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Assignment - Week 1</title>
+</head>
+
+<body>
+
+    <nav>
+        <header id="navLeft">
+            My website
+        </header>
+
+        <header id="navRight">
+            <label id="hamburg">☰</label>
+            <!-- <input type="checkbox" id="switch" style="display: none;"> -->
+            <ul id="switchLi">
+                <li>Item 1 </li>
+                <li>Item 2 </li>
+                <li>Item 3 </li>
+                <li>Item 4 </li>
+            </ul>
+        </header>
+
+        <script>
+            var hamburg = document.getElementById("hamburg");
+            var switchLi = document.getElementById("switchLi");
+            var isShow = true;
+
+            hamburg.onclick = function() {
+                isShow = !isShow;
+                switchLi.style.display = isShow ? 'block' : 'none';
+            }
+        </script>
+
+
+    </nav>
+
+
+    <br>
+
+    <body>
+        <div id="welcome">
+            Welcome To Myhome
+        </div>
+
+        <main id="WandaVisionPic">
+
+            <div class="stills">
+                <img src="./img/Wanda.jpg">
+                <h6 class="name">Wanda</h6>
+            </div>
+
+            <div class="stills">
+                <img src="./img/Vision.jpg">
+                <h6 class="name">Vision</h6>
+            </div>
+
+            <div class="stills">
+                <img src="./img/Rambeau.jpg">
+                <h6 class="name">Rambeau</h6>
+            </div>
+
+            <div class="stills">
+                <img src="./img/Agatha.jpg">
+                <h6 class="name">Agatha</h6>
+            </div>
+
+            <div class="stills">
+                <img src="./img/Jimmy.jpg">
+                <h6 class="name">Jimmy</h6>
+            </div>
+
+            <div class="stills">
+                <img src="./img/Darcy.jpg">
+                <h6 class="name">Darcy</h6>
+            </div>
+
+            <div class="stills">
+                <img src="./img/Pietro.jpg">
+                <h6 class="name">Pietro</h6>
+            </div>
+
+            <div class="stills">
+                <img src="./img/Hayward.jpg">
+                <h6 class="name">Hayward</h6>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>

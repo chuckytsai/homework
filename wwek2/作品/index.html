@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment - Week 2</title>
+</head>
+
+<body>
+    <!-- ========要求一：函式與流程控制======== -->
+    <h3>要求一：函式與流程控制</h3>
+    <script>
+        function calculate(min, max) {
+            var sum = 0
+            for (x = min; x <= max; x++) {
+                sum = sum + x;
+            }
+            document.write(sum)
+            document.write('<br/>')
+        }
+        calculate(1, 3); // 程式要能夠計算 1+2+3，最後印出 6
+        calculate(4, 8); // 程式要能夠計算 4+5+6+7+8，最後印出 30
+    </script>
+
+    <!-- ========要求二：JavaScript 物件與陣列======== -->
+    <h3>要求二：JavaScript 物件與陣列</h3>
+    <script>
+        function avg(data) {
+            var sumM = 0;
+
+            for (var index = 0; index < data.employees.length; index++) {
+                // 若是employees有索引就會繼續幫大家總加salary
+
+                sumM = sumM + data.employees[index].salary;
+
+            }
+            document.write(sumM / data.employees.length);
+        }
+        avg({
+            "count": 3,
+            "employees": [{
+                "name": "John",
+                "salary": 30000
+            }, {
+                "name": "Bob",
+                "salary": 60000
+            }, {
+                "name": "Jenny",
+                "salary": 50000
+            }]
+        });
+    </script>
+
+    <!-- ========要求三：演算法======== -->
+    <h3>要求三：演算法</h3>
+    <script>
+        function maxProduct(nums) {
+            var arr = nums;
+            for (var compare = 0; compare < arr.length; compare++) {
+                // 比較次數
+                for (var ba = 0; ba < arr.length - 1; ba++) {
+                    // 前後交換次數
+                    if (arr[ba] < arr[ba + 1]) {
+                        temp = arr[ba];
+                        arr[ba] = arr[ba + 1];
+                        arr[ba + 1] = temp;
+                    }
+                }
+            }
+            document.write(nums[0] * nums[1] + '</br>')
+                // document.write(compare] + '</br>')
+
+        }
+        maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
+        maxProduct([10, -20, 0, 3]); // 得到 30 因為 10 和 3 相乘得到最大值
+    </script>
+    <script>
+    </script>
+
+    <!-- ========要求四：演算法======== -->
+    <!-- 同理99乘法表  然後判斷是否為9才印出 -->
+    <h3>要求四：演算法</h3>
+    <script>
+        function twoSum(nums, target) {
+            for (var test1 = 0; test1 < nums.length; test1++) {
+                for (var test2 = test1 + 1; test2 < nums.length; test2++) {
+                    if (nums[test1] + nums[test2] == target) {
+                        document.write(nums[test1] + " + " + nums[test2] + " = " + target);
+                        return [test1, test2]
+                    }
+                }
+            }
+        }
+        result = twoSum([2, 11, 7, 15], 9)
+        console.log(result)
+    </script>
+
+    <!-- ========要求五：演算法======== -->
+    <h3>要求五：演算法</h3>
+    <script>
+        function maxZeros(nums) {
+            var add = 0;
+            var max = 0;
+            for (var zeros = 0; zeros < nums.length; zeros++) {
+                if (nums[zeros] == 0) {
+                    add++;
+                } else {
+                    if (add > max) {
+                        max = add;
+                    }
+                    add = 0;
+                }
+            }
+            if (add > max) max = add;
+            document.write(max + '<br>');
+        }
+        maxZeros([0, 1, 0, 0]) // 得到 2
+        maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]) // 得到 4
+        maxZeros([1, 1, 1, 1, 1]) // 得到 0
+    </script>
+
+
+</body>
+
+</html>
