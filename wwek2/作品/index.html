@@ -111,7 +111,7 @@
                 for (var test2 = test1 + 1; test2 < nums.length; test2++) {
                     if (nums[test1] + nums[test2] == target) {
                         document.write(nums[test1] + " + " + nums[test2] + " = " + target);
-                        return ('[' + [test1] + ']' + '[' + [test2] + ']')
+                        return [test1, test2]
                     }
                 }
             }
