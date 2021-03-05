@@ -55,7 +55,7 @@
 
     <!-- ========要求三：演算法======== -->
     <h3>要求三：演算法</h3>
-    <script>
+    <!-- <script>
         function maxProduct(nums) {
             var arr = nums;
             for (var compare = 0; compare < arr.length; compare++) {
@@ -75,9 +75,28 @@
         }
         maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
         maxProduct([10, -20, 0, 3]); // 得到 30 因為 10 和 3 相乘得到最大值
-    </script>
+        maxProduct([-10, -20, 1, 2]); // 得到 200 因為 -20 和 -10 相乘得到最大值
+    </script> -->
     <script>
+        function maxProduct(nums) {
+            var sum = 0
+            var a = -Infinity
+            for (var test1 = 0; test1 < nums.length; test1++) {
+                for (var test2 = test1 + 1; test2 < nums.length; test2++) {
+                    // if (nums[test1] * nums[test2] > nums[test1+1] * nums[test2+1])
+                    // document.write(nums[test1] * nums[test2] + '<br>')
+                    sum = nums[test1] * nums[test2]
+                    a = Math.max(a, sum)
+                }
+            }
+            document.write(a + '<br>')
+        }
+
+        maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
+        maxProduct([10, -20, 0, 3]); // 得到 30 因為 10 和 3 相乘得到最大值
+        maxProduct([-10, -20, 1, 2]); // 得到 200 因為 -20 和 -10 相乘得到最大值
     </script>
+
 
     <!-- ========要求四：演算法======== -->
     <!-- 同理99乘法表  然後判斷是否為9才印出 -->
