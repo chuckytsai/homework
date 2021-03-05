@@ -81,18 +81,18 @@
         function maxProduct(nums) {
             var sum = 0
             var m = -Infinity
-            // var a = -Infinity
+                // var a = -Infinity
             for (var test1 = 0; test1 < nums.length; test1++) {
                 for (var test2 = test1 + 1; test2 < nums.length; test2++) {
-                    if (nums[test1] * nums[test2] > m){
+                    if (nums[test1] * nums[test2] > m) {
                         m = nums[test1] * nums[test2]
                     }
                     // sum = nums[test1] * nums[test2]
                     // a = Math.max(a, sum)
                 }
             }
-            document.write(m+'</br>')
-         
+            document.write(m + '</br>')
+
             // document.write(a + '<br>')
         }
 
@@ -111,7 +111,7 @@
                 for (var test2 = test1 + 1; test2 < nums.length; test2++) {
                     if (nums[test1] + nums[test2] == target) {
                         document.write(nums[test1] + " + " + nums[test2] + " = " + target);
-                        return nums[test1]+nums[test2]
+                        return ([test1] + ' + ' + [test2])
                     }
                 }
             }

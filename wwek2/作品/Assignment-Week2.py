@@ -70,11 +70,11 @@ def twoSum(nums, target):
     for test1 in range(0, len(nums)):
         for test2 in range(test1 + 1, len(nums)):
             if nums[test1] + nums[test2] == target:
-                return nums[test1], nums[test2]
+                return [test1], [test2]
 
 
 result = twoSum([2, 11, 7, 15], 9)
-print('相加為9的2個數目', result)
+print('相加為9的2個數目索引', result)
 
 
 # ========要求五：演算法========
