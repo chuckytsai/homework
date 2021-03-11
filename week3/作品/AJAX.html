@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script>
+        function getData() {
+            // 2.準備與Ajax連線
+            return new Promise(function(resolve, reject) {
+                let req = new XMLHttpRequest()
+                req.open("get", "data.txt");
+                req.onload = function() {
+                    // 5.等待一段時間後,[子程式]完成連線,觸發[主程式]的load事件,取得資料
+                    // 6.呼叫callback,即透過參數傳入的showData函式
+                    resolve(this.responseText);
+                };
+                req.onerror = function() {
+                    reject("Error");
+                }
+                req.send(); // 3.送出連線,建立[子程式]進行非同步處理
+            }); // 4.[主程式]立刻結束函式 回傳undefind
+        }
+        let promiss = getData(); //1. 呼叫取資料用的含式,並將showData函式透過參數傳入
+        promiss.then(function(result) {
+            console.log(result);
+        }).catch(function(error) {
+            console.log(error)
+        });
+    </script> -->
+
+    <script>
+        var req = new XMLHttpRequest()
+        req.open("get", "data.txt")
+        req.send()
+        req.onload = function() {
+            console.log(this.responseText[6]);
+        };
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

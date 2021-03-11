@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Assignment - Week 1</title>
+</head>
+
+<body>
+
+    <nav>
+        <header id="navLeft">
+            My website
+        </header>
+
+        <header id="navRight">
+            <label id="hamburg">☰</label>
+            <!-- <input type="checkbox" id="switch" style="display: none;"> -->
+            <ul id="switchLi">
+                <li> Item1 </li>
+                <li> Item2 </li>
+                <li> Item3 </li>
+                <li> Item4 </li>
+            </ul>
+        </header>
+        <!-- 右上漢堡縮圖效果 -->
+        <script>
+            var hamburg = document.getElementById("hamburg");
+            var switchLi = document.getElementById("switchLi");
+            var isShow = true;
+
+            hamburg.onclick = function() {
+                isShow = !isShow;
+                switchLi.style.display = isShow ? 'block' : 'none';
+            }
+        </script>
+
+        <script>
+            var showpreset = 0;
+            var tripName = [];
+            var tripPic = [];
+
+
+            // 建立全部DIV
+            function presetDiv() {
+                fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json")
+                    .then(function(data) {
+                        return data.json();
+                    })
+                    .then(function(data) {
+                        // 預設資料長度為 8
+                        // showpreset = data.result.results;
+                        // showpreset = 8
+
+                        for (let PD = showpreset; PD < showpreset + 8; PD++) {
+                            tripName.push(data.result.results[PD].stitle); //景點name
+                            tripPic.push(data.result.results[PD].file.split('http://')[1]) //景點照片
+                            var divTag = document.createElement('div'); //建立div標籤
+                            var imgTag = document.createElement('img'); //建立img標籤
+                            var h6Tag = document.createElement('h6'); //建立h6標籤
+                            var h6name = document.createTextNode(tripName[PD]);
+                            imgTag.src = "https://" + tripPic[PD];
+                            divTag.appendChild(h6name); //把文字內容放到h6
+                            h6Tag.appendChild(h6name); //把文字內容放到h6
+                            divTag.appendChild(imgTag); //把img的標籤塞進div
+                            divTag.append(h6Tag); //把h6的標籤塞進div
+                            divTag.className = 'stills'; //替div加入一個class的屬性.並給值
+                            h6Tag.className = 'name'; //替h6加入一個class的屬性.並給值
+                            document.getElementsByTagName('main')[0].append(divTag);
+                        }
+                    })
+            }
+
+            function morDiv() {
+                showpreset = showpreset + 8
+                presetDiv()
+            }
+        </script>
+
+    </nav>
+
+    <br>
+
+    <body>
+        <script>
+            var divTag = document.createElement('div'); //建立div標籤
+            var tagContent = document.createTextNode('Welcome To Taiwan');
+            divTag.id = 'welcome'; //替div加入一個id的屬性.並給值
+            divTag.appendChild(tagContent); //把剛建立的字串塞進div
+            document.body.appendChild(divTag); //把div標籤塞到body下
+        </script>
+
+
+        <main id="viewPic">
+
+            <script>
+                presetDiv()
+            </script>
+
+        </main>
+        <button id='wantMore' onclick="morDiv()">按 我 載 更 多</button>
+    </body>
+
+</html>
