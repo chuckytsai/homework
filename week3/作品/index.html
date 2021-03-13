@@ -18,10 +18,10 @@
         <header id="navLeft">
             My website
         </header>
-
+        <!-- 右邊的選單 -->
         <header id="navRight">
             <label id="hamburg" onclick="navSwitch()">☰</label>
-            <!-- <input type="checkbox" id="switch" style="display: none;"> -->
+            <!-- =====小螢幕的漢堡圖===== -->
             <ul id="switchLi">
                 <li> Item1 </li>
                 <li> Item2 </li>
@@ -32,16 +32,19 @@
     </nav>
 
     <br>
+    <!-- ========歡迎台灣的DIV========== -->
     <script>
         window.onload = welcomeDiv();
     </script>
 
     <body>
+        <!-- ========建立全部DIV======== -->
         <main id="viewPic">
             <script>
-                document.onload = presetDiv();
+                window.onload = presetDiv();
             </script>
         </main>
+        <!-- =====載入更多的按鈕====== -->
         <button id='wantMore' onclick="morDiv()">按 我 載 更 多</button>
     </body>
 

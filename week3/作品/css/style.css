@@ -28,7 +28,7 @@ nav {
 }
 
 li {
-    margin-right: 3px;
+    margin-right: 5px;
 }
 
 
@@ -53,7 +53,9 @@ li {
 @media(max-width: 599px) {
     #hamburg {
         display: block;
-        max-width: 100px;
+        width: 35px;
+        margin-right: 5%;
+        padding-left: 45%;
     }
 }
 
@@ -79,12 +81,18 @@ li {
 
 @media(max-width: 599px) {
     li {
-        font-size: 15px;
+        font-size: 20px;
         float: none;
-        margin-bottom: 2%;
+        margin-bottom: 3%;
         text-align: left;
-        background-color: rgb(146, 131, 131);
+        background-color: rgb(255, 249, 249, 0.5);
     }
+}
+
+li:hover {
+    border-radius: 20%;
+    background-color: rgb(193, 235, 236);
+    cursor: pointer;
 }
 
 
@@ -97,6 +105,7 @@ body {
     background-size: cover;
     margin: 0px;
     font-family: Arial rgb(218, 219, 141);
+    background-color: rgba(228, 168, 38, 0.1);
 }
 
 
@@ -109,10 +118,12 @@ body {
     font-family: fantasy;
     margin-top: 0.5%;
     width: 100%;
-    color: rgb(29, 124, 131);
-    text-shadow: 0.01em 0.01em rgb(34, 19, 5);
+    color: rgb(15, 9, 32);
+    text-shadow: 0.05em 0.05em rgb(253, 246, 239);
     height: 300px;
-    background-color: rgba(186, 204, 240, 0.7);
+    background-image: url(../img/miaolihiongqien.jpg);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 @media(max-width: 1199px) {
@@ -188,7 +199,7 @@ img {
 /* 名稱 */
 
 .name {
-    background-color: rgb(47, 55, 94);
+    background-color: rgb(155, 131, 87);
     color: rgba(246, 252, 243, 0.8);
     font-family: Courier;
     text-align: center;
@@ -196,7 +207,8 @@ img {
     margin-top: -1%;
     width: 285px;
     height: 30px;
-    overflow-x: hidden;
+    overflow-x: auto;
+    border-radius: 5%;
     /* display: none; */
 }
 
@@ -230,7 +242,10 @@ img {
     font-size: 22px;
     font-weight: 1000;
     color: rgba(246, 252, 243, 0.8);
-    background-color: rgb(47, 55, 94, 0.8);
+    background-color: rgb(155, 131, 87);
+    cursor: pointer;
+    border-radius: 5% 3% 2% 5%;
+    outline: none;
 }
 
 @media(max-width: 1199px) {
