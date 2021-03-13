@@ -14,8 +14,7 @@ with req.urlopen(request) as response:
 
 # # ======解析原始碼,取得 景點名稱,經度,緯度,第一張圖檔網址======
 root = bs4.BeautifulSoup(data, "html.parser")
-soup_string = str(root)
-wantdata = json.loads(soup_string)
+wantdata = json.loads(str(root))
 
 # print(wantdata["result"]["results"][0]["file"]) #測試用
 if os.path.isfile("data.txt"):
