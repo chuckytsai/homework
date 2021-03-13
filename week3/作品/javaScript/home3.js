@@ -38,8 +38,8 @@ function presetDiv() {
                 var divTag = document.createElement('div'); //建立div標籤
                 var imgTag = document.createElement('img'); //建立img標籤
                 var h6Tag = document.createElement('h6'); //建立h6標籤
-                var h6name = document.createTextNode(tripName[PD]);
-                imgTag.src = "https://" + tripPic[PD];
+                var h6name = document.createTextNode(tripName[PD]); //景點名稱文字放入h6標籤
+                imgTag.src = "https://" + tripPic[PD]; //以https://作為分割
                 divTag.appendChild(h6name); //把文字內容放到h6
                 h6Tag.appendChild(h6name); //把文字內容放到h6
                 divTag.appendChild(imgTag); //把img的標籤塞進div
