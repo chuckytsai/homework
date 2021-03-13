@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Assignment - Week 1</title>
+    <title>Assignment - Week 3</title>
 </head>
 
 <body>
@@ -39,21 +39,18 @@
         </script>
 
         <script>
-            var showpreset = 0;
             var tripName = [];
             var tripPic = [];
-
-
+            var showpreset = 0;
             // 建立全部DIV
+
             function presetDiv() {
                 fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json")
                     .then(function(data) {
                         return data.json();
                     })
                     .then(function(data) {
-                        // 預設資料長度為 8
-                        // showpreset = data.result.results;
-                        // showpreset = 8
+
 
                         for (let PD = showpreset; PD < showpreset + 8; PD++) {
                             tripName.push(data.result.results[PD].stitle); //景點name
