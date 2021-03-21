@@ -5,56 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/Alice/css/template.css">
     <title>{{name}} signing in</title>
 </head>
 
 <style>
-    /* 網頁背景 */
-    
     body {
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: cover;
-        margin: 0px;
-        font-family: Arial rgb(218, 219, 141);
-        background-color: rgba(210, 241, 211, 0.3);
-    }
-    /* 首頁招呼 */
-    
-    #verify {
-        color: rgb(206, 140, 54);
-        display: flex;
-        margin: 0 auto;
-        margin-top: 5%;
-        justify-content: center;
-        font-size: 40px;
-        font-weight: 900;
-    }
-    /* 請輸入帳號密碼 */
-    
-    #verifyInput {
-        color: rgb(37, 25, 9);
-        display: flex;
-        margin: 0 auto;
-        margin-top: 5%;
-        justify-content: center;
-        font-size: 30px;
-        font-weight: 900;
-    }
-    /* 帳號密碼輸入區域 */
-    
-    #IdPw {
-        display: flex;
-        margin-top: 5%;
-        margin: 0 auto;
-        margin-top: 2%;
-        justify-content: center;
-    }
-    /* 登入按鈕 */
-    
-    #login {
-        margin-top: 10%;
+        background-image: url("http://127.0.0.1:3000/Alice/img/teatime.jpg");
     }
 </style>
 
@@ -64,14 +21,14 @@
         <a href="/">登 出</a>
     </div>
 
-    <label id="verify">Welcom {{whatName}}</label>
+    <label id="verify">Welcome {{whatName}} ,to Wonderland</label>
 
-    <h2 id="verifyInput">I'm Gideon ,May I help you</h2>
+    <h2 class="verifyInput">Do you want tea or cookie?</h2>
     <form id="IdPw" action="/IdPw" method="POST">
 
     </form>
 
-
+    <audio id="myaudio" src="http://127.0.0.1:3000/Alice/media/action.mp3" controls="controls" autoplay hidden="true"></audio>
 </body>
 
 </html>
