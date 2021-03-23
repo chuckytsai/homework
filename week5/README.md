@@ -8,6 +8,7 @@
 ![image]( https://github.com/chuckytsai/homework/blob/main/week5/img/usertable.JPG)
 
 基本的 SQL 指令
+
 ● 使用 INSERT 指令新增一筆資料到 user 資料表中，這筆資料的 username 和
 password 欄位必須是 ply。接著繼續新增至少 4 筆隨意的資料。
 ![image]( https://github.com/chuckytsai/homework/blob/main/week5/img/INSERT%204%2B1.JPG)
@@ -39,4 +40,16 @@ password 欄位必須是 ply。接著繼續新增至少 4 筆隨意的資料。
 
 ● 使用 DELETE 指令刪除所有在 user 資料表中的資料。
 ![image]( https://github.com/chuckytsai/homework/blob/main/week5/img/delete.JPG)
+
+結合資料表 SQL JOIN 的操作 (Optional)
+
+在資料庫中，建立新資料表，取名字為message。資料表中必須包含以下欄位設定：
+![image]( https://github.com/chuckytsai/homework/blob/main/week5/img/messageTable.JPG)
+
+使用 SELECT 搭配 JOIN 的語法，取得所有留言，資料中須包含留言會員的姓名。
+![image]( https://github.com/chuckytsai/homework/blob/main/week5/img/joincontent.JPG)
+
+使用 SELECT 搭配 JOIN 的語法，取得 user 資料表中欄位 username 是 ply 的所有留
+言，資料中須包含留言會員的姓名。
+![image]( https://github.com/chuckytsai/homework/blob/main/week5/img/wherePLYJOIN.JPG)
 

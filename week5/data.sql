@@ -1,1 +1,1 @@
-SELECT * FROM webside.user;
+SELECT * FROM webside.message;
