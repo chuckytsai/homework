@@ -93,7 +93,7 @@ body {
 /* 請輸入帳號密碼 */
 
 .verifyInput {
-    color: rgb(31, 19, 63);
+    color: rgb(245, 31, 31);
     display: flex;
     margin: 0 auto;
     margin-top: 1%;

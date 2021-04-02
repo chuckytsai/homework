@@ -59,13 +59,29 @@ def signin():
     friendName = cursor.fetchall()
     # 登入成功頁面(session)
     if len(friendName) > 0 and request.values.get("whatPW")==friendName[0][3]:
-       Myname=request.values.get("whatName")
-       return render_template("member.html", Myname=Myname)
+       return render_template("member.html")
  
     # 輸入的帳號或是密碼錯誤的話
     else:
         return redirect("/error?message=ID or Password is error")
 
+
+# 變更使用者密碼(POST)
+@app.route("/changpw", methods=["POST"])
+def changpw():
+    #判斷使用者ID以及密碼正確
+    selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
+    cursor.execute(selectName, {'nameval': request.values.get("checkName")})
+    friendName = cursor.fetchall()
+    #判斷正確才可以改帳號密碼
+    if len(friendName) > 0 and request.values.get("checkPW")==friendName[0][3]:
+        select = 'UPDATE `week6`.`userpassword` SET `password`=%(PWval)s WHERE (`username`=%(nameval)s);'
+        cursor.execute(select, {'PWval': request.values.get("checkAgain"),'nameval': request.values.get("checkName")})
+        db.commit()
+        return render_template("member.html")
+    # 輸入的帳號或是密碼錯誤的話
+    else:
+        return redirect("/error?message=ID or Password is error")
 
 # 建立註冊頁面並且判斷帳號密碼是否重複(POST)
 @app.route("/signup", methods=["POST"])
@@ -87,6 +103,7 @@ def signup():
        cursor.execute(sql, val)
        db.commit()
        return redirect(url_for('index'))
+
 
 # 帳號或是密碼錯誤
 
