@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/spider/css/templateMember.css">
+    <title>{{Myname }} signing in</title>
+    <link rel="icon" href="http://127.0.0.1:3000/spider/img/spiderman.icon.png" type="image/x-icon">
+    <script src="http://127.0.0.1:3000/spider/js/template.js"></script>
+</head>
+
+
+<body>
+
+
+
+    <label id="verify">Welcome <span> ! </span> <span name="welcome"> {{Myname}}</span> ,I am Your friendly neighborhood</label>
+    <div class="logoutB">
+        <a href="/logout">登 出</a>
+    </div>
+    <div class="ad">
+        <ul class="dots">
+            <li data='2' class="dot"></li>
+            <li data='1' class="dot"></li>
+            <li data='0' class="dot"></li>
+            <li data='3' class="dot" style="background-color: rgb(196, 60, 60);"></li>
+        </ul>
+        <ul id="imgs" class="imgs">
+            <li data='1' class="img_li">
+                <!-- 變更姓名的form -->
+                <div class="fromBlock">
+                    <h2 class="verifyTitle">Do you want change username ?</h2>
+                    <form id="registered" action="/api/user" method="POST">
+                        <div>
+                            <h5 class="verifyInput">old username</h5>
+                            <a class="verifyInput"><input class="verifyInput" type="text" name="checkUsername" /></a>
+                            <br>
+                            <button class="verifyInput justButton">變 更</button>
+                            <div class="tellMassage"> {{NameMessage}}</div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li data='2' class="img_li">
+                <!-- 尋找其他會員的form -->
+                <div class="fromBlock">
+                    <h2 class="verifyTitle">Search Your other partner </h2>
+                    <form id="registered" action="/searchPartner" method="POST">
+                        <div>
+                            <h5 class="verifyInput">User Name</h5>
+                            <a class="verifyInput"><input class="verifyInput" type="text" name="searchName" /></a>
+                            <br>
+                            <button class="verifyInput justButton">尋 找</button>
+                            <div class="searchData"> {{searchData}}</div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li data='3' class="img_li">
+                <!-- 查詢並列印會員的form -->
+                <div class="fromBlock">
+                    <h2 class="verifyTitle">Print Your partner data</h2>
+                    <form id="registered" action="/print" method="POST">
+                        <div>
+                            <h5 class="verifyInput">User Name</h5>
+                            <a class="verifyInput"><input class="verifyInput" type="text" name="printName" /></a>
+                            <br>
+                            <button class="verifyInput justButton">列 印 成 Json 檔 案</button>
+                            <div class="searchData"> {{printData}}</div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li data='0' class="img_li">
+                <!-- 變更密碼的form -->
+                <div class="fromBlock">
+                    <h2 class="verifyTitle">Do you want change password ?</h2>
+                    <form id="registered" action="/changpw" method="POST">
+                        <div>
+                            <h5 class="verifyInput">Name</h5>
+                            <a class="verifyInput"><input class="verifyInput" type="text" name="checkName" /></a>
+                            <h5 class="verifyInput">old password</h5>
+                            <a class="verifyInput"><input class="verifyInput" type="text" name="checkPW" /></a>
+                            <h5 class="verifyInput">new password</h5>
+                            <a class="verifyInput"><input class="verifyInput" type="test" name="checkAgain" /></a>
+                            <br>
+                            <button class="verifyInput justButton">變 更</button>
+                            <div class="tellMassage"> {{PWMessage}}</div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        userCarousel()
+    </script>
+
+</body>
+
+</html>

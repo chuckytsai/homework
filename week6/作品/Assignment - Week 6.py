@@ -17,7 +17,7 @@ db = mysql.connector.connect(
     host="localhost",
     port=3307,
     user="root",
-    passwd="pm2021pm",
+    passwd="P@ssw0rd",
     db='week6',
     charset='utf8')
 
@@ -59,7 +59,8 @@ def signin():
     friendName = cursor.fetchall()
     # 登入成功頁面(session)
     if len(friendName) > 0 and request.values.get("whatPW")==friendName[0][3]:
-       return render_template("member.html")
+       Myname= request.values.get("whatName")
+       return render_template("member.html", Myname=Myname)
  
     # 輸入的帳號或是密碼錯誤的話
     else:
