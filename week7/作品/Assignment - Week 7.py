@@ -11,6 +11,9 @@ from mysql.connector import Error
 from flask_sqlalchemy import SQLAlchemy
 import os
 import json
+import flask
+
+
 
 # 帳號密碼的資料庫讀取
 db = mysql.connector.connect(
@@ -66,78 +69,75 @@ def signin():
 
 # 查詢並列印會員資料(POST)
 
-
-@app.route("/print", methods=["POST"])
+@app.route("/api/users", methods=["GET"])
 def print():
     # 判斷使用者ID
     selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
-    cursor.execute(selectName, {'nameval': request.values.get("printName")})
+    cursor.execute(selectName, {'nameval': request.values.get("username")})
     friendName = cursor.fetchall()
     # 判斷有帳號才列印
     if len(friendName) > 0:
-        with open("./json/data.json", mode="w", newline='') as file:
-            friendID = '{'+'\n' + ' "data"'+':'+'{'+'\n'+' "id":'+str(friendName[0][0])+','+'\n'+' "name":'+'"'+str(
-                friendName[0][1])+'"'+','+'\n'+' "username":'+'"'+str(friendName[0][2])+'"'+'}'+'\n'+'}'
-            file.write(friendID)
-            Myname = request.args.get("printName")
-            printData = "列印完成 !"
-            return render_template("member.html", Myname=Myname,printData=printData)
+        printData = '{'+'\n' + ' "data"'+':'+'{'+'\n'+' "id":'+str(friendName[0][0])+','+'\n'+' "name":'+'"'+str(
+        friendName[0][1])+'"'+','+'\n'+' "username":'+'"'+str(friendName[0][2])+'"'+'}'+'\n'+'}'
+        Myname = friendName[0][2]
+        return render_template("member.html",Myname=Myname ,printData=printData)
     # 判斷沒有帳號才列印錯誤
     else:
-        with open("./json/data.json", mode="w", newline='') as file:
-            friendID = '{'+'\n' + ' "data"'+':'+'null'+'\n'+'}'
-            file.write(friendID)
-            return redirect("/error?message=No check!")
+        printData = '{'+'\n' + ' "data"'+':'+'null'+'\n'+'}'
+        return render_template("member.html",printData=printData)
 
 # 尋找其他會員(POST)
-
-
-@app.route("/searchPartner", methods=["POST"])
+@app.route("/searchPartner", methods=["GET"])
 def searchPartner():
     # 判斷使用者ID正確
-    selectName = 'SELECT * FROM userpassword WHERE name= %(nameval)s'
+    selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
     cursor.execute(selectName, {'nameval': request.values.get("searchName")})
     friendName = cursor.fetchall()
     # 判斷此人才顯示
     if len(friendName) > 0:
         searchNameData = 'User Name: '+friendName[0][2]
         Myname = request.args.get("searchName")
-        return render_template("searchPartner.html", searchData=searchNameData, Myname=Myname)
+        return render_template("member.html",Myname=Myname, searchData=searchNameData )
     # 判斷無此人
     else:
         searchData = "No check!"
-        return render_template("searchPartner.html", searchData=searchData)
+        return render_template("member.html", searchData=searchData)
+
 
 # 變更使用者姓名(POST)
-
-
 @app.route("/api/user", methods=["POST"])
 def changUsername():
-    # 判斷使用者ID以及密碼正確
+    request_sendData=request.get_json()
+    ChangName=request_sendData['oldName']
+    inPutName=request_sendData['name']
+    # request_data=request.get_json()
+    # ChangName=request_data['name']
+    # 判斷使用者ID
     selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
-    cursor.execute(selectName, {'nameval': request.values.get("checkUsername")})
+    cursor.execute(selectName, {'nameval': inPutName})
     friendName = cursor.fetchall()
-    # 判斷正確才可以改帳號密碼
+
+
+    # 判斷正確才可以改帳號
     if len(friendName) > 0:
-        # 讀取Json檔案 
-       with open(r"json/changName.json", mode="r", encoding="utf-8") as file:
-           data = json.load(file)
-           select = 'UPDATE `week6`.`userpassword` SET `username`=%(newval)s WHERE (`username`=%(oldval)s);'
-           cursor.execute(select, {'newval': data["name"],'oldval': request.values.get("checkUsername")})
+           select = 'UPDATE `week6`.`userpassword` SET `name`=%(newval)s WHERE (`username`=%(oldval)s);'
+           cursor.execute(select, {'newval': inPutName,'oldval': ChangName})
            friendName = cursor.fetchall()
            db.commit()
-           with open("json/ok.json", mode="w", newline='') as file:
-               friendID = '{'+'\n' + ' "ok"'+':'+'true'+'\n'+'}'
-               file.write(friendID)
-               NameMessage = "變更完成"
-               Myname = request.args.get("checkUsername")
-               return render_template("apiuser.html", NameMessage=NameMessage, Myname=Myname)
+        #    NameMessage =  '{'+'\n' + ' "ok"'+':'+'true'+'\n'+'}'
+        #    Myname = request.get_json()["name"]
+        #    return render_template("member.html", NameMessage=NameMessage, Myname=Myname)
+           resp = flask.Response("{\"ok\"=true}") 
+           resp.headers['Content-Type'] = "application/json" 
+           return resp
     # 輸入的帳號或是密碼錯誤的話
     else:
-        with open("json/ok.json", mode="w", newline='') as file:
-            friendID = '{'+'\n' + ' "error"'+':'+'true'+'\n'+'}'
-            file.write(friendID)
-            return redirect("/error?message=ID or Password is error")
+        # NameMessage =  '{'+'\n' + ' "error"'+':'+'true'+'\n'+'}'
+        # return render_template("member.html", NameMessage=NameMessage)
+           resp = flask.Response("{\"error\"=true}") 
+           resp.headers['Content-Type'] = "application/json" 
+           return resp
+   
 
 
 # 變更使用者密碼(POST)
@@ -154,9 +154,7 @@ def changpw():
             "checkAgain"), 'nameval': request.values.get("checkName")})
         db.commit()
         PWMessage = "變更完成"
-        Myname = request.values.get("checkName")
-        return render_template("changpw.html", PWMessage=PWMessage, Myname=Myname)
-        # return render_template("member.html")
+        return render_template("member.html", PWMessage=PWMessage,)
     # 輸入的帳號或是密碼錯誤的話
     else:
         return redirect("/error?message=ID or Password is error")
@@ -182,7 +180,6 @@ def signup():
         val = (inputName, inputUserName, inputPassword)
         cursor.execute(sql, val)
         db.commit()
-        # return redirect('/?success=Account creation completed!')
         success = "變更完成"
         return render_template("member.html",Success=success)
 

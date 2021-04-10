@@ -11,47 +11,6 @@ body {
 }
 
 
-/* 輪播圖 */
-
-ul {
-    list-style: none;
-}
-
-.dots {
-    position: relative;
-    margin-left: 44%;
-    top: 50%;
-    z-index: 999;
-}
-
-@media(max-width: 799px) {
-    .dots {
-        position: relative;
-        margin-left: 15%;
-        top: 50%;
-        z-index: 999;
-    }
-}
-
-.dot {
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-    border-radius: 30px;
-    background-color: rgb(255, 255, 255);
-    border: inset 1px rgb(73, 67, 67, 0.8);
-    cursor: pointer;
-    margin: 0 3px;
-}
-
-@media(max-width: 799px) {
-    .dot {
-        width: 20px;
-        height: 20px;
-    }
-}
-
-
 /* 首頁招呼 */
 
 #verify {
@@ -74,14 +33,14 @@ ul {
 .fromBlock {
     background-color: rgb(253, 245, 232);
     width: 40%;
-    height: 400px;
+    height: 300px;
     margin-left: 28%;
     /* margin-top: 50px; */
     margin-bottom: 10px;
     border-radius: 5%;
     border: inset 5px rgb(226, 31, 31);
     padding: 1%;
-    position: absolute;
+    /* position: absolute; */
 }
 
 @media(max-width: 799px) {
@@ -201,6 +160,19 @@ a {
     position: relative;
     margin-top: 20px;
     font-weight: 3000;
+}
+
+
+/* 告知訊息(成功與失敗) */
+
+.OKMassage {
+    font-size: 17px;
+    color: rgb(211, 38, 38);
+    margin-left: 1%;
+    position: relative;
+    margin-top: 20px;
+    font-weight: 3000;
+    display: none;
 }
 
 
