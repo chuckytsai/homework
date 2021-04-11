@@ -8,14 +8,29 @@ function textNone() {
     }
 }
 
+// 列印與查詢會員名字資料API
+function fetchSearch() {
+    var showData = document.getElementById("showData")
+    var nameSearch = document.getElementById("searchUserKey").value;
+    fetch("http://127.0.0.1:3000/api/users?username=" + nameSearch, {
+            method: "GET",
+        }).then((response) => response.json())
+        .then(data => {
+            showData.innerHTML = 'name : ' + data.data.name;
+        })
+        .catch(() => {
+            showData.innerHTML = 'name : ' + "沒有這個人";
+        })
+
+}
+
 // 查詢會員名字資料API
 window.onload = function() {
-    var gogo = document.getElementById('ContentType');
+    var change = document.getElementById('ContentType');
     var OKMassage = document.getElementById("OKMassage");
     var errorMassage = document.getElementById("errorMassage");
-    // var data = { "name": "Ultron" }
 
-    gogo.addEventListener('submit', function(event) {
+    change.addEventListener('submit', function(event) {
         event.preventDefault();
         var nameStr = document.getElementById("userKey").value;
         var sendData = { "oldName": "Ultron", "name": nameStr }
@@ -23,7 +38,7 @@ window.onload = function() {
                 method: "POST",
                 body: JSON.stringify(sendData),
                 headers: ({ 'Content-Type': 'application/json' })
-            }).then((response) => response.text())
+            }).then((response) => response.json())
             .then((data) => {
                 OKMassage.style.display = 'block';
                 errorMassage.style.display = 'none';
