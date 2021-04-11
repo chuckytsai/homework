@@ -5,6 +5,7 @@ from flask import redirect
 from flask import render_template
 from flask import session
 from flask import url_for
+from flask import jsonify
 from markupsafe import escape
 import mysql.connector
 from mysql.connector import Error
@@ -12,6 +13,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import json
 import flask
+
 
 
 
@@ -70,38 +72,19 @@ def signin():
 # 查詢並列印會員資料(POST)
 
 @app.route("/api/users", methods=["GET"])
-def print():
+def printData():    
     # 判斷使用者ID
     selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
-    cursor.execute(selectName, {'nameval': request.values.get("username")})
+    cursor.execute(selectName, {'nameval': request.args.get("username")})
     friendName = cursor.fetchall()
-    # 判斷有帳號才列印
+    # 判斷有帳號才顯示
     if len(friendName) > 0:
-        printData = '{'+'\n' + ' "data"'+':'+'{'+'\n'+' "id":'+str(friendName[0][0])+','+'\n'+' "name":'+'"'+str(
-        friendName[0][1])+'"'+','+'\n'+' "username":'+'"'+str(friendName[0][2])+'"'+'}'+'\n'+'}'
-        Myname = friendName[0][2]
-        return render_template("member.html",Myname=Myname ,printData=printData)
+        data = {"data":{"id":friendName[0][0],"name":friendName[0][1],"username":friendName[0][3]}}
+        return jsonify(data)
     # 判斷沒有帳號才列印錯誤
     else:
-        printData = '{'+'\n' + ' "data"'+':'+'null'+'\n'+'}'
-        return render_template("member.html",printData=printData)
-
-# 尋找其他會員(POST)
-@app.route("/searchPartner", methods=["GET"])
-def searchPartner():
-    # 判斷使用者ID正確
-    selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
-    cursor.execute(selectName, {'nameval': request.values.get("searchName")})
-    friendName = cursor.fetchall()
-    # 判斷此人才顯示
-    if len(friendName) > 0:
-        searchNameData = 'User Name: '+friendName[0][2]
-        Myname = request.args.get("searchName")
-        return render_template("member.html",Myname=Myname, searchData=searchNameData )
-    # 判斷無此人
-    else:
-        searchData = "No check!"
-        return render_template("member.html", searchData=searchData)
+        data={"name": "null"}
+        return jsonify(data)
 
 
 # 變更使用者姓名(POST)
@@ -110,13 +93,10 @@ def changUsername():
     request_sendData=request.get_json()
     ChangName=request_sendData['oldName']
     inPutName=request_sendData['name']
-    # request_data=request.get_json()
-    # ChangName=request_data['name']
-    # 判斷使用者ID
+
     selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
     cursor.execute(selectName, {'nameval': inPutName})
     friendName = cursor.fetchall()
-
 
     # 判斷正確才可以改帳號
     if len(friendName) > 0:
@@ -124,40 +104,16 @@ def changUsername():
            cursor.execute(select, {'newval': inPutName,'oldval': ChangName})
            friendName = cursor.fetchall()
            db.commit()
-        #    NameMessage =  '{'+'\n' + ' "ok"'+':'+'true'+'\n'+'}'
-        #    Myname = request.get_json()["name"]
-        #    return render_template("member.html", NameMessage=NameMessage, Myname=Myname)
            resp = flask.Response("{\"ok\"=true}") 
            resp.headers['Content-Type'] = "application/json" 
            return resp
     # 輸入的帳號或是密碼錯誤的話
     else:
-        # NameMessage =  '{'+'\n' + ' "error"'+':'+'true'+'\n'+'}'
-        # return render_template("member.html", NameMessage=NameMessage)
            resp = flask.Response("{\"error\"=true}") 
            resp.headers['Content-Type'] = "application/json" 
            return resp
    
 
-
-# 變更使用者密碼(POST)
-@app.route("/changpw", methods=["POST"])
-def changpw():
-    # 判斷使用者ID以及密碼正確
-    selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
-    cursor.execute(selectName, {'nameval': request.values.get("checkName")})
-    friendName = cursor.fetchall()
-    # 判斷正確才可以改帳號密碼
-    if len(friendName) > 0 and request.values.get("checkPW") == friendName[0][3]:
-        select = 'UPDATE `week6`.`userpassword` SET `password`=%(PWval)s WHERE (`username`=%(nameval)s);'
-        cursor.execute(select, {'PWval': request.values.get(
-            "checkAgain"), 'nameval': request.values.get("checkName")})
-        db.commit()
-        PWMessage = "變更完成"
-        return render_template("member.html", PWMessage=PWMessage,)
-    # 輸入的帳號或是密碼錯誤的話
-    else:
-        return redirect("/error?message=ID or Password is error")
 
 # 建立註冊頁面並且判斷帳號密碼是否重複(POST)
 
