@@ -6,7 +6,6 @@ function playPause() {
     }
 }
 // 進入網頁後撥放音樂
-
 $(function() {
     var myAuto = document.getElementById('myaudio');
     myAuto.play();

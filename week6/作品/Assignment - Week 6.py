@@ -29,9 +29,6 @@ cursor.execute("""
 """)
 myresult = cursor.fetchall()
 
-
-
-
 # 建立Application物件
 # 設定靜態檔案的路徑處理
 app = Flask(
@@ -39,16 +36,13 @@ app = Flask(
     static_folder="material",  # 靜態檔案的資料匣名稱
     static_url_path="/spider"
 )
-
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
 
 # 建立首頁
 @app.route("/")
 def index():
     successMessage = request.args.get("success")
     return render_template("index.html",success=successMessage)
-
 
 # 建立登入頁面並且判斷帳號密碼登入通往其他頁面(POST)
 @app.route("/signin", methods=["POST"])
@@ -61,11 +55,9 @@ def signin():
     if len(friendName) > 0 and request.values.get("whatPW")==friendName[0][3]:
        Myname= request.values.get("whatName")
        return render_template("member.html", Myname=Myname)
- 
     # 輸入的帳號或是密碼錯誤的話
     else:
         return redirect("/error?message=ID or Password is error")
-
 
 # 變更使用者密碼(POST)
 @app.route("/changpw", methods=["POST"])
@@ -105,22 +97,17 @@ def signup():
        db.commit()
        return redirect(url_for('index'))
 
-
 # 帳號或是密碼錯誤
-
 @app.route("/error")
 def error():
     errorMessage = request.args.get("message")
     return render_template("error.html", message=errorMessage)
 
 # 登出帳號且瀏覽器忘記該帳號訊息
-
-
 @app.route('/logout')
 def logout():
     session.pop("whatName", None)
     return redirect(url_for('index'))
-
 
 # 用port3000
 app.run(port=3000)

@@ -29,12 +29,9 @@
     <script>
         function avg(data) {
             var sumM = 0;
-
             for (var index = 0; index < data.employees.length; index++) {
                 // 若是employees有索引就會繼續幫大家總加salary
-
                 sumM = sumM + data.employees[index].salary;
-
             }
             document.write(sumM / data.employees.length);
         }
@@ -55,45 +52,18 @@
 
     <!-- ========要求三：演算法======== -->
     <h3>要求三：演算法</h3>
-    <!-- <script>
-        function maxProduct(nums) {
-            var arr = nums;
-            for (var compare = 0; compare < arr.length; compare++) {
-                // 比較次數
-                for (var ba = 0; ba < arr.length - 1; ba++) {
-                    // 前後交換次數
-                    if (arr[ba] < arr[ba + 1]) {
-                        temp = arr[ba];
-                        arr[ba] = arr[ba + 1];
-                        arr[ba + 1] = temp;
-                    }
-                }
-            }
-            document.write(nums[0] * nums[1] + '</br>')
-                // document.write(compare] + '</br>')
-
-        }
-        maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
-        maxProduct([10, -20, 0, 3]); // 得到 30 因為 10 和 3 相乘得到最大值
-        maxProduct([-10, -20, 1, 2]); // 得到 200 因為 -20 和 -10 相乘得到最大值
-    </script> -->
     <script>
         function maxProduct(nums) {
             var sum = 0
             var m = -Infinity
-                // var a = -Infinity
             for (var test1 = 0; test1 < nums.length; test1++) {
                 for (var test2 = test1 + 1; test2 < nums.length; test2++) {
                     if (nums[test1] * nums[test2] > m) {
                         m = nums[test1] * nums[test2]
                     }
-                    // sum = nums[test1] * nums[test2]
-                    // a = Math.max(a, sum)
                 }
             }
             document.write(m + '</br>')
-
-            // document.write(a + '<br>')
         }
 
         maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
@@ -143,8 +113,6 @@
         maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]) // 得到 4
         maxZeros([1, 1, 1, 1, 1]) // 得到 0
     </script>
-
-
 </body>
 
 </html>

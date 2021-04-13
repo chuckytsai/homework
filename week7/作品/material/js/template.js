@@ -21,7 +21,6 @@ function fetchSearch() {
         .catch(() => {
             showData.innerHTML = 'name : ' + "沒有這個人";
         })
-
 }
 
 // 查詢會員名字資料API

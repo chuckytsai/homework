@@ -6,6 +6,9 @@ from flask import render_template
 from flask import session
 from flask import url_for
 from markupsafe import escape
+import mysql.connector
+from mysql.connector import Error
+from flask_sqlalchemy import SQLAlchemy
 import os
 import json
 
@@ -16,22 +19,14 @@ app = Flask(
     static_folder="material",  # 靜態檔案的資料匣名稱
     static_url_path="/Alice"
 )
-
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-
 # 建立首頁
-
-
 @app.route("/")
 def index():
     return render_template("index.html")
 
-
 def find_name():
-
-    print(request.values)
-
     # 讀取帳號密碼Json檔案
     with open(r"material/vip/np.json", mode="r", encoding="utf-8") as file:
         data = json.load(file)
@@ -39,7 +34,6 @@ def find_name():
 # 宣告變數為使用者輸入的帳號密碼
     inputNameValue=request.values.get("whatName")
     inputPWValue=request.values.get("whatPW")
-
     flag = False
 
 # 找出是否有帳號密碼在vip.json中
@@ -50,17 +44,12 @@ def find_name():
             session["whatName"]=inputName
             flag=True
             break
- 
-
     if flag:
         return inputName,inputPW
     else:
         return "getout","getout"
 
-
 # 建立登入頁面並且判斷帳號密碼登入通往其他頁面(POST)
-
-
 @app.route("/signin", methods=["POST"])
 def signin():
     name ,password= find_name()
@@ -78,29 +67,22 @@ def member():
         return render_template("member.html")
     else:
         return redirect("/")
+
 # 登入(帳號成功密碼錯誤)
-
-
 @app.route("/memberName")
 def memberName():
     return render_template("memberName.html")
 
 # 帳號密碼皆錯
-
-
 @app.route("/error")
 def error():
     return render_template("error.html")
 
 # 登出帳號且瀏覽器忘記該帳號訊息
-
-
 @app.route('/logout')
 def logout():
-    # remove the username from the session if it's there
     session.pop("whatName", None)
     return redirect(url_for('index'))
-
 
 # 用port3000
 app.run(port=3000)

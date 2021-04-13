@@ -14,9 +14,6 @@ import os
 import json
 import flask
 
-
-
-
 # 帳號密碼的資料庫讀取
 db = mysql.connector.connect(
     host="localhost",
@@ -45,8 +42,6 @@ app = Flask(
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 # 建立首頁
-
-
 @app.route("/")
 def index():
     successMessage = request.args.get("success")
@@ -64,7 +59,6 @@ def signin():
     if len(friendName) > 0 and request.values.get("whatPW") == friendName[0][3]:
         Myname = request.values.get("whatName")
         return render_template("member.html", Myname=Myname)
-
     # 輸入的帳號或是密碼錯誤的話
     else:
         return redirect("/error?message=ID or Password is error")
@@ -97,7 +91,6 @@ def changUsername():
     selectName = 'SELECT * FROM userpassword WHERE username= %(nameval)s'
     cursor.execute(selectName, {'nameval': inPutName})
     friendName = cursor.fetchall()
-
     # 判斷正確才可以改帳號
     if len(friendName) > 0:
            select = 'UPDATE `week6`.`userpassword` SET `name`=%(newval)s WHERE (`username`=%(oldval)s);'
@@ -114,10 +107,7 @@ def changUsername():
            return resp
    
 
-
 # 建立註冊頁面並且判斷帳號密碼是否重複(POST)
-
-
 @app.route("/signup", methods=["POST"])
 def signup():
     # 尋找帳號的字串是否在SQL中
@@ -139,7 +129,6 @@ def signup():
         success = "變更完成"
         return render_template("member.html",Success=success)
 
-
 # 帳號或是密碼錯誤
 @app.route("/error")
 def error():
@@ -147,13 +136,10 @@ def error():
     return render_template("error.html", error=errorMessage)
 
 # 登出帳號且瀏覽器忘記該帳號訊息
-
-
 @app.route('/logout')
 def logout():
     session.pop("whatName", None)
     return redirect(url_for('index'))
-
 
 # 用port3000
 app.run(port=3000)

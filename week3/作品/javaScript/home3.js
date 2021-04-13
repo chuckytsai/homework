@@ -10,7 +10,6 @@ function navSwitch() {
     };
 };
 
-
 // ==========歡迎台灣的DIV==========
 function welcomeDiv() {
     var divTag = document.createElement('div'); //建立div標籤
@@ -25,7 +24,6 @@ var tripPic = [];
 var showpreset = 0;
 
 // ========建立全部DIV========
-
 function presetDiv() {
     fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json")
         .then(function(data) {

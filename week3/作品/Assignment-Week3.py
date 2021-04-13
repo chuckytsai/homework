@@ -10,13 +10,11 @@ request = req.Request(url, headers={
 })
 with req.urlopen(request) as response:
     data = response.read().decode("utf-8")
-# print(data) #測試用
 
 # # ======解析原始碼,取得 景點名稱,經度,緯度,第一張圖檔網址======
 root = bs4.BeautifulSoup(data, "html.parser")
 wantdata = json.loads(str(root))
 
-# print(wantdata["result"]["results"][0]["file"]) #測試用
 if os.path.isfile("data.txt"):
    os.remove("data.txt")
 for wantIndex in range(len(wantdata["result"]["results"])):
@@ -25,8 +23,6 @@ for wantIndex in range(len(wantdata["result"]["results"])):
     latitudeY = wantdata["result"]["results"][wantIndex]["latitude"]  # 景點緯度
     wantUrl = wantdata["result"]["results"][wantIndex]["file"]  # 撈到全部景點照片URL
     wantArray = wantUrl.split('http://')  # split 將https:// 作為分屍條件
-    
-    # print(destination, longitudeX, latitudeY, wantArray[1])
     with open("data.txt", mode="a", encoding="utf-8") as file:
         file.write(destination + ','+longitudeX +
                    ','+latitudeY + ', https://' + wantArray[1] + ',\n')
